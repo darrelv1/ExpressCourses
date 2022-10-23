@@ -2,19 +2,24 @@ const express = require('express');
 
 const app = express();
 
-app.get('/', (req, res) => {
+//Setting the template language
+app.set('view engine', 'pug');
+
+
+
+app.get('/', (req, res) => {git
     res.send('<h1>I love Treehouse!</h1>');
 });
 
 app.get('/hello', (req, res) => {
-    res.send('<h1>Hello, JavaScript Developer!</h1>');
+    res.render('Hello');
 });
 
 app.get('/pugTest', (req, res) => {
-    res.render('<h1>Hello, JavaScript Developer!</h1>');
+    res.render('pugTest');
 });
 
 
-app.listen(3000, () => {
+app.listen(3009, () => {
     console.log('The application is running on localhost:3000!')
 });
