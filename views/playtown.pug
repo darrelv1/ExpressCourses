@@ -11,8 +11,13 @@ html(lang="en")
                         if answer
                             span=myName
                         else
-                            span #{No Answer}
-
+                            span #{answer}
+                h1  LOOPS
+                    section
+                        p Loop over people i know
+                          ul
+                            each key,val in Table
+                                li= val + ` : ` + key
 
 
 

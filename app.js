@@ -36,7 +36,7 @@ app.get('/cards',(request, response) => {
 })
 
 app.get("/sandbox", (req, res)=> {
-    res.render('playtown',{ myName, answer});
+    res.render('playtown',{ myName, answer, Table});
 })
 
 //alternative option  to had variables
