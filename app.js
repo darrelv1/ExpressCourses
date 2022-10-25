@@ -10,7 +10,7 @@ const Table = {
     Mateo : "Son",
     Marietta : "Mother",
     Claudia : "Girlfriend",
-    Anthony : "PussyBoy",
+    Darrel : "Me",
 }
 
 const myName = "Darrel Valdiviezo"

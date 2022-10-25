@@ -1,18 +1,13 @@
-doctype html
-html(lang="en")
-    head
-        title SANDBOX
-    body
-        div
-            header
-                h1  CONDITIONAL
+extends layout.pug
+block content
+                h2  CONDITIONAL
                 section
                     p If you can produce the name so it here:
                         if answer
                             span=myName
                         else
                             span #{answer}
-                h1  LOOPS
+                h2  LOOPS
                     section
                         p Loop over people i know
                           ul
@@ -22,6 +17,3 @@ html(lang="en")
 
 
 
-
-    footer
-        p An app to help you study
