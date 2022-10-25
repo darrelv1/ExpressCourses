@@ -6,6 +6,15 @@ const app = express();
 app.set('view engine', 'pug');
 
 
+const colors = [
+    'red',
+    'orange',
+    'yellow',
+    'green',
+    'blue',
+    'purple'
+];
+
 
 app.get('/', (req, res) => {
     res.send('<h1>I love Treehouse!</h1>');
@@ -21,7 +30,7 @@ app.get('/pugTest', (req, res) => {
 
 //Option one to had variables
 app.get('/cards',(request, response) => {
-    response.render('cards', {prompt : "What is node?", hint : "think about the development ENV" });
+    response.render('cards', {prompt : "What is node?", hint : "think about the development ENV" , colors});
 })
 
 //alternative option  to had variables
