@@ -7,7 +7,7 @@ app.set('view engine', 'pug');
 
 
 
-app.get('/', (req, res) => {git
+app.get('/', (req, res) => {
     res.send('<h1>I love Treehouse!</h1>');
 });
 
@@ -18,6 +18,17 @@ app.get('/hello', (req, res) => {
 app.get('/pugTest', (req, res) => {
     res.render('pugTest');
 });
+
+//Option one to had variables
+app.get('/cards',(request, response) => {
+    response.render('cards', {prompt : "What is node?", hint : "think about the development ENV" });
+})
+
+//alternative option  to had variables
+// app.get('/cards',(request, response) => {
+//     response.locals= {prompt : "What is node"};
+//     response.render('cards', );
+// })
 
 
 app.listen(3009, () => {
