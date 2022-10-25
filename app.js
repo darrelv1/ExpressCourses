@@ -5,15 +5,17 @@ const app = express();
 //Setting the template language
 app.set('view engine', 'pug');
 
+//Sandbox Variables
+const Table = {
+    Mateo : "Son",
+    Marietta : "Mother",
+    Claudia : "Girlfriend",
+    Anthony : "PussyBoy",
+}
 
-const colors = [
-    'red',
-    'orange',
-    'yellow',
-    'green',
-    'blue',
-    'purple'
-];
+const myName = "Darrel Valdiviezo"
+const answer = Table.Mateo === "Ssdfson"
+
 
 
 app.get('/', (req, res) => {
@@ -30,7 +32,11 @@ app.get('/pugTest', (req, res) => {
 
 //Option one to had variables
 app.get('/cards',(request, response) => {
-    response.render('cards', {prompt : "What is node?", hint : "think about the development ENV" , colors});
+    response.render('cards', {prompt : "What is node?", hint : "think about the development ENV" });
+})
+
+app.get("/sandbox", (req, res)=> {
+    res.render('playtown',{ myName, answer});
 })
 
 //alternative option  to had variables
