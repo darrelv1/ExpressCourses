@@ -1,9 +1,14 @@
 const express = require('express');
+const bodyparser = require('body-parser')
 
 const app = express();
 
 //Setting the template language
 app.set('view engine', 'pug');
+
+
+//body parser
+app.use(bodyparser.urlencoded({extended: false}));
 
 //Sandbox Variables
 const Table = {
@@ -27,6 +32,7 @@ app.get('/hello', (req, res) => {
 });
 
 app.post('/hello', (req, res) => {
+    console.dir(req.body)
     res.render('Hello');
 });
 
