@@ -26,6 +26,10 @@ app.get('/hello', (req, res) => {
     res.render('Hello');
 });
 
+app.post('/hello', (req, res) => {
+    res.render('Hello');
+});
+
 app.get('/pugTest', (req, res) => {
     res.render('pugTest');
 });
@@ -46,6 +50,6 @@ app.get("/sandbox", (req, res)=> {
 // })
 
 
-app.listen(3009, () => {
-    console.log('The application is running on localhost:3000!')
+app.listen(3001, () => {
+    console.log(`The application is running on localhost:${'3001'}!`)
 });

@@ -1,7 +1,8 @@
 extends layout.pug
 block content
         h2 Welcome to the Hello Page
-        div
-            p This only a test
-            span testing what span looks like
-        div
+        form(action='/hello',method='post')
+            label What is your username?
+                input(type="text", name='username')
+            button(type='submit') Submit
+
