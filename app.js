@@ -7,8 +7,12 @@ const app = express();
 app.set('view engine', 'pug');
 
 
-//body parser
-app.use(bodyparser.urlencoded({extended: false}));
+//body parser OLD WAY
+//app.use(bodyparser.urlencoded({extended: false}));
+
+// middleware for parsing http payloads
+app.use(express.urlencoded());
+
 
 //Sandbox Variables
 const Table = {
@@ -33,7 +37,7 @@ app.get('/hello', (req, res) => {
 
 app.post('/hello', (req, res) => {
     console.dir(req.body)
-    res.render('Hello');
+    res.render('Hello', {name : req.body.username});
 });
 
 app.get('/pugTest', (req, res) => {
