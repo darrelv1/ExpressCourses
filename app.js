@@ -1,5 +1,8 @@
 const express = require('express');
-const bodyparser = require('body-parser')
+
+//Middleware parsers
+const bodyparser = require('body-parser');
+const cookieparser = require('cookie-parser');
 
 const app = express();
 
@@ -12,6 +15,7 @@ app.set('view engine', 'pug');
 
 // middleware for parsing http payloads
 app.use(express.urlencoded());
+app.use(cookieparser())
 
 
 //Sandbox Variables
@@ -32,11 +36,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/hello', (req, res) => {
-    res.render('Hello');
+    //Cookies being read from the browser here
+    res.render('Hello', req.cookies.username);
 });
 
+
 app.post('/hello', (req, res) => {
-    console.dir(req.body)
+    //Sending a cookie to the browser after we submit a form, the cookie define/create in this line
+    res.cookie("username", req.body.username)
     res.render('Hello', {name : req.body.username});
 });
 
@@ -61,5 +68,5 @@ app.get("/sandbox", (req, res)=> {
 
 
 app.listen(3001, () => {
-    console.log(`The application is running on localhost:${'3001'}!`)
+    console.log(`The application is running on localhost:${'3002'}!`)
 });
