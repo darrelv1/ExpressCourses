@@ -32,19 +32,25 @@ const answer = Table.Mateo === "Ssdfson"
 
 
 app.get('/', (req, res) => {
-    res.send('<h1>I love Treehouse!</h1>');
+    const name = req.cookies.username
+    console.dir(name ? "true": "false")
+    if (name){
+         res.render('index', {name})}
+    else{
+        res.redirect("/hello")
+    };
 });
 
 app.get('/hello', (req, res) => {
     //Cookies being read from the browser here
-    res.render('Hello', req.cookies.username);
+    res.render('Hello');
 });
 
 
 app.post('/hello', (req, res) => {
     //Sending a cookie to the browser after we submit a form, the cookie define/create in this line
     res.cookie("username", req.body.username)
-    res.render('Hello', {name : req.body.username});
+    res.redirect("/")
 });
 
 app.get('/pugTest', (req, res) => {

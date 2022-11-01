@@ -1,8 +1,6 @@
 extends layout.pug
 block content
-        if name
-            h2 Welcome to the Hello page #{name}
-        else
+
             form(action='/hello',method='post')
                 label What is your username?
                     input(type="text", name='username')
