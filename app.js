@@ -3,6 +3,7 @@ const express = require('express');
 //Middleware parsers
 const bodyparser = require('body-parser');
 const cookieparser = require('cookie-parser');
+const {request} = require("express");
 
 const app = express();
 
@@ -41,9 +42,16 @@ app.get('/', (req, res) => {
     };
 });
 
+
+
 app.get('/hello', (req, res) => {
     //Cookies being read from the browser here
-    res.render('Hello');
+    const name = req.cookies.username
+    if (name){
+        res.redirect('/')
+    } else{
+        res.render('Hello');
+    }
 });
 
 
@@ -52,6 +60,16 @@ app.post('/hello', (req, res) => {
     res.cookie("username", req.body.username)
     res.redirect("/")
 });
+
+app.post('/goodbye', (req, res)=>{
+    res.clearCookie("username")
+    res.render('cookies')
+    //res.redirect("/hello")
+})
+
+app.get('/goodbye', (req, res)=>{
+    res.redirect("/")
+})
 
 app.get('/pugTest', (req, res) => {
     res.render('pugTest');
@@ -74,5 +92,5 @@ app.get("/sandbox", (req, res)=> {
 
 
 app.listen(3001, () => {
-    console.log(`The application is running on localhost:${'3002'}!`)
+    console.log(`The application is running on localhost:${'3001'}!`)
 });
