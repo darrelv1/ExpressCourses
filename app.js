@@ -32,6 +32,26 @@ const answer = Table.Mateo === "Ssdfson"
 
 
 
+app.use("/goodbye", (req, res,next)=>{
+    console.log("1. every single page")
+    next()
+}, (req, res,next)=> {
+    console.log("2. Second thing on every single page")
+    next();
+})
+
+app.use("/", (req,res,next) => {
+    console.log("home page")
+    next()
+})
+app.use("/hello", (req,res,next) => {
+    console.log("Form Page")
+    next()
+})
+
+
+
+
 app.get('/', (req, res) => {
     const name = req.cookies.username
     console.dir(name ? "true": "false")
@@ -39,10 +59,8 @@ app.get('/', (req, res) => {
          res.render('index', {name})}
     else{
         res.redirect("/hello")
-    };
+    }
 });
-
-
 
 app.get('/hello', (req, res) => {
     //Cookies being read from the browser here
@@ -53,7 +71,6 @@ app.get('/hello', (req, res) => {
         res.render('Hello');
     }
 });
-
 
 app.post('/hello', (req, res) => {
     //Sending a cookie to the browser after we submit a form, the cookie define/create in this line
