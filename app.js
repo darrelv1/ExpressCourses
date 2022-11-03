@@ -32,28 +32,24 @@ const answer = Table.Mateo === "Ssdfson"
 
 
 
-app.use("/goodbye", (req, res,next)=>{
-    console.log("1. every single page")
-    next()
-}, (req, res,next)=> {
-    console.log("2. Second thing on every single page")
-    next();
-})
-
-app.use("/", (req,res,next) => {
-    console.log("home page")
-    next()
-})
 app.use("/hello", (req,res,next) => {
     console.log("Form Page")
     next()
 })
 
-
+//505 Error Creator
+app.use((req, res,next)=>{
+    console.log("1. every single page")
+    const err = new Error("oh noes")
+    err.status= 500
+    next()
+//    next(err)
+})
 
 
 app.get('/', (req, res) => {
     const name = req.cookies.username
+
     console.dir(name ? "true": "false")
     if (name){
          res.render('index', {name})}
@@ -107,6 +103,21 @@ app.get("/sandbox", (req, res)=> {
 //     response.render('cards', );
 // })
 
+
+
+//404 - has to be at the end of the app
+app.use((req, res,next)=>{
+    const err = new Error("Not Found");
+    err.status= 404;
+    next(err);
+})
+
+//Error Handler
+app.use((err,req,res,next) => {
+    res.locals.error = err;
+    res.status(err.status);
+    res.render("error")
+})
 
 app.listen(3001, () => {
     console.log(`The application is running on localhost:${'3001'}!`)
