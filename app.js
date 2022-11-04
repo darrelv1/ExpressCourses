@@ -34,9 +34,12 @@ const answer = Table.Mateo === "Ssdfson"
 //for index naming convention, the path doesn't need to be explicit
 const indRoutes = require("./routes");
 const carRoutes = require ("./routes/cards.js")
+const exRoutes = require ("./routes/paraex.js")
+
 
 app.use(indRoutes)
 app.use("/cards",carRoutes)
+app.use("/paraex",exRoutes)
 
 
 
