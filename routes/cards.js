@@ -5,10 +5,13 @@ const { cards } = data
 
 //Option one to had variables
 router.get('/:id',(request, response) => {
-    response.render('cards', {
-        prompt : cards[request.params.id].question,
-        hint : cards[request.params.id].hint
-    });
+    const { id } = request.params
+    const { side } = request.query
+    const { hint } = cards[id];
+    const text = cards[id][side]
+
+    const templateData = {text , hint }
+    response.render('cards', templateData);
 })
 
 module.exports = router
