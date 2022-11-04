@@ -31,11 +31,14 @@ const myName = "Darrel Valdiviezo"
 const answer = Table.Mateo === "Ssdfson"
 
 
+//for index naming convention, the path doesn't need to be explicit
+const indRoutes = require("./routes");
+const carRoutes = require ("./routes/cards.js")
 
-app.use("/hello", (req,res,next) => {
-    console.log("Form Page")
-    next()
-})
+app.use(indRoutes)
+app.use("/cards",carRoutes)
+
+
 
 //505 Error Creator
 app.use((req, res,next)=>{
@@ -47,55 +50,8 @@ app.use((req, res,next)=>{
 })
 
 
-app.get('/', (req, res) => {
-    const name = req.cookies.username
 
-    console.dir(name ? "true": "false")
-    if (name){
-         res.render('index', {name})}
-    else{
-        res.redirect("/hello")
-    }
-});
 
-app.get('/hello', (req, res) => {
-    //Cookies being read from the browser here
-    const name = req.cookies.username
-    if (name){
-        res.redirect('/')
-    } else{
-        res.render('Hello');
-    }
-});
-
-app.post('/hello', (req, res) => {
-    //Sending a cookie to the browser after we submit a form, the cookie define/create in this line
-    res.cookie("username", req.body.username)
-    res.redirect("/")
-});
-
-app.post('/goodbye', (req, res)=>{
-    res.clearCookie("username")
-    res.render('cookies')
-    //res.redirect("/hello")
-})
-
-app.get('/goodbye', (req, res)=>{
-    res.redirect("/")
-})
-
-app.get('/pugTest', (req, res) => {
-    res.render('pugTest');
-});
-
-//Option one to had variables
-app.get('/cards',(request, response) => {
-    response.render('cards', {prompt : "What is node?", hint : "think about the development ENV" });
-})
-
-app.get("/sandbox", (req, res)=> {
-    res.render('playtown',{ myName, answer, Table});
-})
 
 //alternative option  to had variables
 // app.get('/cards',(request, response) => {
